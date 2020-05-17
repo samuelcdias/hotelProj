@@ -1,4 +1,4 @@
-const Funcionario = require('../models/funcionario')
+const Funcionario = require('../models/Funcionario')
 
 const controller = {} // Objeto vazio
 
@@ -26,7 +26,7 @@ controller.listar = async (req, res) => {
          const lista = await Funcionario.find()
          res.send(lista) // HTTP 200 implícito
       }
-      catch {
+      catch (erro) {
          console.log(erro)
          res.status(500).send(erro)
       }
