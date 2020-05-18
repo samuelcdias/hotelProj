@@ -19,7 +19,7 @@ const esquema = mongoose.Schema({
    status: {
       type: String,
       required: true,
-      enum: ['Disponível','Em manutenção','Executando Limpeza', 'Indisponível', 'Desativado']
+      enum: ['Disponível','Em manutenção','Executando Limpeza', 'Ocupado', 'Indisponível', 'Desativado']
    }
 })
 

@@ -23,8 +23,23 @@ app.use('/users', usersRouter);
 const cliente = require('./routes/cliente')
 app.use('/cliente', cliente)
 
+const estadia = require('./routes/estadia')
+app.use('/estadia', estadia)
+
 const funcionario = require('./routes/funcionario')
 app.use('/funcionario', funcionario)
+
+const itemServico = require('./routes/itemServico')
+app.use('/item-servico', itemServico)
+
+const quarto = require('./routes/quarto')
+app.use('/quarto', quarto)
+
+const reserva = require('./routes/reserva')
+app.use('/reserva', reserva)
+
+const servico = require('./routes/servico')
+app.use('/servico', servico)
 
 module.exports = app;
 

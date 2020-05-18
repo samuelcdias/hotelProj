@@ -15,7 +15,21 @@ const esquema = mongoose.Schema({
         ref: 'Quarto',
         required: true
     },
-
+    quantidade: {
+        type: Number,
+        required: true,
+        validate: {
+            validator: function(val) {
+                return val > 0
+            },
+            message: 'A quantidade deve ser maior do que zero'
+        }
+    },
+    estadia: {
+        type: mongoose.ObjectId,
+        ref: 'Estadia',
+        required: true
+    }
 })
 
 /*
