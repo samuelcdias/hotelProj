@@ -28,11 +28,16 @@ controller.listar = async (req, res) => {
       try {
          // find(), sem parâmetros, retorna todos
          const lista = await ItemServico.find().populate(
-               {path: 'estadia', select: 'quarto', populate: 
-               {path: 'quarto', select: 'numero'}
+                {path: 'estadia', select: 'quarto reserva', populate: 
+                [{path: 'quarto', select: 'numero'},
+                    {path: 'reserva', select: 'cliente', populate: 
+                        {path: 'cliente', select: 'nome'
+                        }
+                    }
+                ]
             })
             .populate(
-               {path: 'servico', select: 'numero descricao valor'})
+               {path: 'servico', select: 'numero descricao preco_venda'})
          res.send(lista) // HTTP 200 implícito
       }
       catch (erro) {

@@ -1,18 +1,16 @@
 const mongoose = require('mongoose')
 
 const esquema = mongoose.Schema({
+    numero:{
+        type: Number
+    },
     dataHora: {
         type: Date,
         required: true,
     },
-    quarto: {
-        type: mongoose.ObjectId,
-        ref: 'Quarto',
-        required: true
-    },
     servico: {
         type: mongoose.ObjectId,
-        ref: 'Quarto',
+        ref: 'Servico',
         required: true
     },
     quantidade: {
@@ -25,9 +23,9 @@ const esquema = mongoose.Schema({
             message: 'A quantidade deve ser maior do que zero'
         }
     },
-    estadia: {
+    reserva: {
         type: mongoose.ObjectId,
-        ref: 'Estadia',
+        ref: 'Reserva',
         required: true
     }
 })

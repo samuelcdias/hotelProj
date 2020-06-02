@@ -1,22 +1,33 @@
 const mongoose = require('mongoose')
 
 const esquema = mongoose.Schema({
-   dt_entrada: {
-      type: Date,
-      required: true
-   },
-   dt_saida: {
-      type: Date,
-      required: true
-   },
-   tipoQuarto: {
-      type: String
-   },
-   cliente: {
-      type: mongoose.ObjectId,
-      ref: 'Cliente', // Nome do model referenciado
-      required: true
-   }   
+    dt_entrada_Reserva: {
+        type: Date,
+        required: true
+    },
+    dt_saida_Reserva: {
+        type: Date,
+        required: true
+    },
+    hora_entrada: {
+        type: Date,
+        required: true
+    },
+    hora_saida: {
+        type: Date
+    },
+    isReserva: {
+        type: Boolean,
+        default: true
+    },
+    obs: {
+        type: String
+    },
+    tipoTemporada: {
+        type: mongoose.ObjectId,
+        ref: 'TipoTemporada',
+        required: true
+    }
 })
 
 /*

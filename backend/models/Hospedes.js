@@ -1,22 +1,25 @@
 const mongoose = require('mongoose')
 
 const esquema = mongoose.Schema({
-    hora_entrada: {
-        type: Date,
-        required: true
-    },
-    hora_saida: {
-        type: Date
-    },
     reserva: {
         type: mongoose.ObjectId,
-        ref: 'Reserva', // Nome do model referenciado
+        ref: 'Cliente', // Nome do model referenciado
+        required: true
+    },
+    cliente: {
+        type: mongoose.ObjectId,
+        ref: 'Cliente', // Nome do model referenciado
         required: true
     },
     quarto: {
         type: mongoose.ObjectId,
         ref: 'Quarto',
         required: true
+    },
+    isResponsavel: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 })
 
@@ -27,4 +30,4 @@ const esquema = mongoose.Schema({
    3º -> Nome da coleção (collection) em que os objetos criados a partir do modelo serão armazenados no
       MongoDB
 */
-module.exports = mongoose.model('Estadia', esquema, 'estadias')
+module.exports = mongoose.model('Reserva', esquema, 'reservas')

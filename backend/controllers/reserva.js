@@ -1,10 +1,10 @@
-const Reserva = require('../models/Reserva')
+const Estadia = require('../models/Estadia')
 
 const controller = {} // Objeto vazio
 
 controller.novo = async (req, res) => {
    try {
-      await Reserva.create(req.body)
+      await Estadia.create(req.body)
       // HTTP Status 201: Created
       res.status(201).end()
    }
@@ -23,7 +23,11 @@ controller.listar = async (req, res) => {
    else { // sem query string
       try {
          // find(), sem parâmetros, retorna todos
-         const lista = await Reserva.find().populate('cliente')
+         const lista = await Estadia.find().populate( 
+            {path: 'cliente', select: 'nome'
+            })
+            .populate(
+               {path: 'quarto', select: 'numero'})
          res.send(lista) // HTTP 200 implícito
       }
       catch (erro) {
@@ -38,7 +42,7 @@ controller.obterUm = async (req, res) => {
 
    try {
       const id = req.params.id
-      const obj = await Reserva.findById(id)
+      const obj = await Estadia.findById(id)
       if (obj) { // obj foi encontrado
          res.send(obj) // HTTP 200 implícito
       }
@@ -56,7 +60,7 @@ controller.obterUm = async (req, res) => {
 controller.atualizar = async (req, res) => {
    try {
       const id = req.body._id
-      const obj = await Reserva.findByIdAndUpdate(id, req.body)
+      const obj = await Estadia.findByIdAndUpdate(id, req.body)
       if (obj) { // obj encontrado e atualizado
          // HTTP 204: No content
          res.status(204).end()
@@ -74,7 +78,7 @@ controller.atualizar = async (req, res) => {
 controller.excluir = async (req, res) => {
    try {
       const id = req.body._id
-      const obj = await Reserva.findByIdAndDelete(id)
+      const obj = await Estadia.findByIdAndDelete(id)
       if (obj) {
          res.status(204).end()
       }
@@ -101,7 +105,7 @@ async function busca(req, res) {
    console.log(criterio)
 
    try {
-      const lista = await Reserva.find(criterio)
+      const lista = await Estadia.find(criterio)
       res.send(lista)
    }
    catch(erro) {
