@@ -24,6 +24,10 @@ const esquema = mongoose.Schema({
       type: Number,
       required: true,
       min: 0
+   },
+   funcionario: {
+      type: mongoose.ObjectId,
+      ref: 'Funcionario'
    }
 })
 

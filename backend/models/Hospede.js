@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const esquema = mongoose.Schema({
     reserva: {
         type: mongoose.ObjectId,
-        ref: 'Cliente', // Nome do model referenciado
+        ref: 'Reserva', // Nome do model referenciado
         required: true
     },
     cliente: {
@@ -30,4 +30,4 @@ const esquema = mongoose.Schema({
    3º -> Nome da coleção (collection) em que os objetos criados a partir do modelo serão armazenados no
       MongoDB
 */
-module.exports = mongoose.model('Reserva', esquema, 'reservas')
+module.exports = mongoose.model('Hospede', esquema, 'hospedes')

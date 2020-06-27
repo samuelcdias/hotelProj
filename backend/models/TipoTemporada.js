@@ -6,7 +6,7 @@ const esquema = mongoose.Schema({
        required: true
     },
     isAltaTemporada: {
-        type: boolean,
+        type: Boolean,
         required: true,
         default: false
     }
@@ -19,4 +19,4 @@ const esquema = mongoose.Schema({
    3º -> Nome da coleção (collection) em que os objetos criados a partir do modelo serão armazenados no
       MongoDB
 */
-module.exports = mongoose.model('Reserva', esquema, 'reservas')
+module.exports = mongoose.model('tipoTemporada', esquema, 'tiposTemporada')

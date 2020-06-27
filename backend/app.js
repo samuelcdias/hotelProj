@@ -8,6 +8,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const cors = require('cors')
+app.use(cors())
+
 let db = require('./config/database')
 db('mongodb://localhost:27017/hostel')
 
@@ -23,11 +26,11 @@ app.use('/users', usersRouter);
 const cliente = require('./routes/cliente')
 app.use('/cliente', cliente)
 
-const estadia = require('./routes/estadia')
-app.use('/estadia', estadia)
-
 const funcionario = require('./routes/funcionario')
 app.use('/funcionario', funcionario)
+
+const hospede = require('./routes/hospede')
+app.use('/hospede', hospede)
 
 const itemServico = require('./routes/itemServico')
 app.use('/item-servico', itemServico)
@@ -40,6 +43,9 @@ app.use('/reserva', reserva)
 
 const servico = require('./routes/servico')
 app.use('/servico', servico)
+
+const tipoTemporada = require('./routes/tipoTemporada')
+app.use('/tipoTemporada', tipoTemporada)
 
 module.exports = app;
 
