@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
 const esquema = mongoose.Schema({
-    dt_entrada_Reserva: {
+    dt_entrada_reserva: {
         type: Date,
         required: true
     },
-    dt_saida_Reserva: {
+    dt_saida_reserva: {
         type: Date,
         required: true
     },
@@ -16,14 +16,14 @@ const esquema = mongoose.Schema({
     hora_saida: {
         type: Date
     },
-    isReserva: {
+    is_reserva: {
         type: Boolean,
         default: true
     },
     obs: {
         type: String
     },
-    tipoTemporada: {
+    tipo_temporada: {
         type: mongoose.ObjectId,
         ref: 'TipoTemporada',
         required: true

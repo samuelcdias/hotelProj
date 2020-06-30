@@ -6,27 +6,27 @@ const esquema = mongoose.Schema({
       required: true,
       unique: true
    },
-   nroCamas: {
+   nro_camas: {
       type: Number,
       required: true,
       min: 1,
       max: 5
    },
-   camaCasal: {
+   cama_casal: {
       type: Boolean,
       required: true
    },
    descricao: {
       type: String
    },
-   camaExtra: {
+   cama_extra: {
       type: Number,
       required: true,
       default: 0,
       min: 0,
       max: 3
    },
-   dtManutencao: {
+   dt_manutencao: {
       type: Date
    },
    status: {

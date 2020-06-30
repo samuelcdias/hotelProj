@@ -24,7 +24,8 @@ const esquema = mongoose.Schema({
       type: String
    },
    data_nascimento: {
-      type: Date
+      type: Date,
+      required: true
    }
 })
 

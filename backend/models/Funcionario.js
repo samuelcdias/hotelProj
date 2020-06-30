@@ -11,7 +11,8 @@ const esquema = mongoose.Schema({
       index: { unique: true } // Não deixa repetir CPF no cadastro
    },
    rg: {
-      type: String
+      type: String,
+      required: true
    },
    endereco: {
       type: String,
@@ -25,7 +26,8 @@ const esquema = mongoose.Schema({
       type: String
    },
    data_nascimento: {
-      type: Date
+      type: Date,
+      required: true
    },
    funcao_area: {
       type: String,

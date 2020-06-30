@@ -9,6 +9,8 @@ import { MainToolbarComponent } from './ui/main-toolbar/main-toolbar.component';
 import { MainMenuComponent } from './ui/main-menu/main-menu.component';
 import { MainFooterComponent } from './ui/main-footer/main-footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 import { ConfirmDlgComponent } from './ui/confirm-dlg/confirm-dlg.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
 import { ClienteFormComponent } from './cliente/cliente-form/cliente-form.component';
@@ -27,6 +29,20 @@ import { TipoTemporadaListComponent } from './tipo-temporada/tipo-temporada-list
 import { TipoTemporadaFormComponent } from './tipo-temporada/tipo-temporada-form/tipo-temporada-form.component';
 import { ServicoFormComponent } from './servico/servico-form/servico-form.component';
 
+/* // Habilitar formatação de moeda e data em português
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+
+/**** Datas em português no MatDatepicker  ****/
+
+// É preciso instalar os seguintes pacotes:
+// yarn add @angular/material-moment-adapter moment
+/*
+import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core'; 
+*/
+/**********************************************/
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,10 +71,20 @@ import { ServicoFormComponent } from './servico/servico-form/servico-form.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    NgxMaskModule.forRoot()
+     /**** Datas em português no MatDatepicker  ****/
+    //MatMomentDateModule
+     /**********************************************/
   ],
-  providers: [],
+  providers: [
+    /**** Datas em português no MatDatepicker  ****/
+    //{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    //{ provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+    /**********************************************/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
