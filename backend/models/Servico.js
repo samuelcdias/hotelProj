@@ -1,12 +1,9 @@
 const mongoose = require('mongoose')
 
-const mongooseSeq = require('mongoose-sequence')(mongoose);
-
-
 const esquema = mongoose.Schema({
    numero: {
        type: Number,
-       index: { unique: true }
+       required: true
    },
    tipo: {
       type: String,
@@ -31,7 +28,6 @@ const esquema = mongoose.Schema({
    }
 })
 
-esquema.plugin(mongooseSeq, {inc_field: 'numero', start_seq: 1});
 /*
    Parâmetros do método mongoose.model()
    1º -> Nome do modelo

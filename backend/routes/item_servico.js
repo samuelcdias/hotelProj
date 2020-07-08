@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/hospede')
+const controller = require('../controllers/item_servico')
 
 router.post('/', controller.novo)
 router.get('/', controller.listar)

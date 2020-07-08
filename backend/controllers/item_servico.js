@@ -124,4 +124,21 @@ async function busca(req, res) {
    }
 }
 
+controller.filtrarReserva = async (req, res) => {
+   let id = req.params.id
+
+   try {
+      // Só os itens de venda de uma determinada venda
+      const lista = await ItemServico.find({servico: id})
+         .populate('servico')
+         .populate('reserva')
+      res.send(lista)
+   }
+   catch(erro) {
+      console.log(erro)
+      res.status(500).send(erro)
+   }
+}
+
+
 module.exports = controller

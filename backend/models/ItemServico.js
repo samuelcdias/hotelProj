@@ -1,12 +1,16 @@
 const mongoose = require('mongoose')
 
+const mongooseSeq = require('mongoose-sequence')(mongoose);
+
 const esquema = mongoose.Schema({
     numero:{
-        type: Number
+        type: Number,
+        index: { unique: true }
     },
-    dataHora: {
+    data_hora: {
         type: Date,
         required: true,
+        default: Date.now()
     },
     servico: {
         type: mongoose.ObjectId,
@@ -30,6 +34,8 @@ const esquema = mongoose.Schema({
     }
 })
 
+
+esquema.plugin(mongooseSeq, {inc_field: 'numero', start_seq: 1});
 /*
    Parâmetros do método mongoose.model()
    1º -> Nome do modelo
@@ -37,4 +43,4 @@ const esquema = mongoose.Schema({
    3º -> Nome da coleção (collection) em que os objetos criados a partir do modelo serão armazenados no
       MongoDB
 */
-module.exports = mongoose.model('ItemServico', esquema, 'itemsServico')
+module.exports = mongoose.model('ItemServico', esquema, 'items_servico')

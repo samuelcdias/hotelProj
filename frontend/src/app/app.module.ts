@@ -29,7 +29,7 @@ import { TipoTemporadaListComponent } from './tipo-temporada/tipo-temporada-list
 import { TipoTemporadaFormComponent } from './tipo-temporada/tipo-temporada-form/tipo-temporada-form.component';
 import { ServicoFormComponent } from './servico/servico-form/servico-form.component';
 
-/* // Habilitar formatação de moeda e data em português
+// Habilitar formatação de moeda e data em português
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
@@ -38,10 +38,10 @@ registerLocaleData(localePt);
 
 // É preciso instalar os seguintes pacotes:
 // yarn add @angular/material-moment-adapter moment
-/*
+
 import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core'; 
-*/
+
 /**********************************************/
 @NgModule({
   declarations: [
@@ -74,15 +74,15 @@ import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
      /**** Datas em português no MatDatepicker  ****/
-    //MatMomentDateModule
+    MatMomentDateModule
      /**********************************************/
   ],
   providers: [
     /**** Datas em português no MatDatepicker  ****/
-    //{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    //{ provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
     /**********************************************/
   ],
   bootstrap: [AppComponent]

@@ -24,6 +24,9 @@ controller.listar = async (req, res) => {
       try {
          // find(), sem parâmetros, retorna todos
          const lista = await Hospede.find()
+            .populate({path:'reserva'})
+            .populate({path:'cliente'})
+            .populate({path:'quarto'})
          res.send(lista) // HTTP 200 implícito
       }
       catch (erro) {
@@ -102,6 +105,22 @@ async function busca(req, res) {
 
    try {
       const lista = await Hospede.find(criterio)
+      res.send(lista)
+   }
+   catch(erro) {
+      console.log(erro)
+      res.status(500).send(erro)
+   }
+}
+controller.filtrarReserva = async (req, res) => {
+   let id = req.params.id
+
+   try {
+      // Só os itens de venda de uma determinada venda
+      const lista = await Hospede.find({reserva: id})
+         .populate('reserva')
+         .populate('cliente')
+         .populate('quarto')
       res.send(lista)
    }
    catch(erro) {

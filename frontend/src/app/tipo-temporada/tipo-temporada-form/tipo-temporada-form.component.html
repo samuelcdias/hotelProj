@@ -1,1 +1,34 @@
-<p>tipo-temporada-form works!</p>
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+    <mat-form-field>
+        <mat-label>Defina o início da alta Temporada</mat-label>
+        <input name="data_inicio" matInput [min]="minDate" [max]="maxDate" [(ngModel)]="tipoTemporada.data_inicio" [matDatepicker]="data_inicio">
+        <mat-datepicker-toggle matSuffix [for]="data_inicio"></mat-datepicker-toggle>
+        <mat-datepicker #data_inicio></mat-datepicker>
+     </mat-form-field>
+
+     <mat-form-field>
+        <mat-label>Defina o fim da alta Temporada</mat-label>
+        <input name="data_fim" matInput [min]="minDate" [max]="maxDate" [(ngModel)]="tipoTemporada.data_fim" [matDatepicker]="data_fim">
+        <mat-datepicker-toggle matSuffix [for]="data_fim"></mat-datepicker-toggle>
+        <mat-datepicker #data_fim></mat-datepicker>
+     </mat-form-field>
+
+   <!-- <mat-form-field>
+      <mat-checkbox matInput [(ngModel)]="tipoTemporada.is_alta_temporada" name="is_alta_temporada" [(checked)]="IsChecked">Alta Temporada?</mat-checkbox>
+   </mat-form-field> -->
+
+   <mat-toolbar class="form-buttons">
+      <mat-toolbar-row>
+         <button mat-raised-button type="submit" color="accent">
+            Salvar
+         </button>
+         <button mat-raised-button type="button" (click)="voltar(f)">
+            Voltar
+         </button>
+      </mat-toolbar-row>
+   </mat-toolbar>
+
+</form>

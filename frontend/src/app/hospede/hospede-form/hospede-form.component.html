@@ -1,1 +1,44 @@
-<p>hospede-form works!</p>
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+    <mat-form-field>
+        <mat-select placeholder="Selecione o reserva" [(ngModel)]="hospede.reserva" name="reserva" [disabled]="reservaDisabled">
+            <mat-option *ngFor="let reserva of reservas" [value]="reserva._id">
+                ({{reserva._id}}) {{reserva.dt_entrada_reserva | date:'dd/MM/yyyy'}} - {{reserva.dt_saida_reserva | date:'dd/MM/yyyy'}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Selecione o cliente" [(ngModel)]="hospede.cliente" name="cliente">
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente._id">
+                {{cliente.nome}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Selecione o quarto" [(ngModel)]="hospede.quarto" name="quarto">
+            <mat-option *ngFor="let quarto of quartos" [value]="quarto._id">
+                {{quarto.numero}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+      <mat-checkbox matInput [(ngModel)]="reserva.is_reserva" name="is_reserva" [(checked)]="IsChecked">Reserva?</mat-checkbox>
+    </mat-form-field> -->
+
+    <mat-toolbar class="form-buttons">
+        <mat-toolbar-row>
+            <button mat-raised-button type="submit" color="accent">
+                Salvar
+            </button>
+            <button mat-raised-button type="button" (click)="voltar(f)">
+                Voltar
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+</form>

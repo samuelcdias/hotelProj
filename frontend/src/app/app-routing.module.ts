@@ -104,7 +104,7 @@ const routes: Routes = [
     component: ServicoFormComponent
   },
   {
-    path: 'tipo-Temporada',
+    path: 'tipo-temporada',
     component: TipoTemporadaListComponent
   },
   {

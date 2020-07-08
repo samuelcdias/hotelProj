@@ -1,4 +1,12 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { ReservaService } from '../reserva.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms'
+import { ConfirmDlgComponent } from 'src/app/ui/confirm-dlg/confirm-dlg.component';
+
+
 
 @Component({
   selector: 'app-reserva-form',
@@ -7,9 +15,89 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservaFormComponent implements OnInit {
 
-  constructor() { }
+  title: string = 'Nova Reserva'
 
-  ngOnInit(): void {
+  isreserva: Boolean = true
+
+  reserva : any = {
+    is_reserva: true,
+    tipo_temporada: "5f01ff40813d8610d41e4e1e"
+  } 
+
+  constructor(
+    private reservaSrv : ReservaService,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private actRoute: ActivatedRoute,
+    private dialog: MatDialog
+  ) { }
+
+  async ngOnInit() {
+    // Capturando os parâmetros da rota
+    let params = this.actRoute.snapshot.params
+
+    // Existe um parâmetro chamado :id?
+    if(params['id']) {
+      // É caso de atualização. É necesário consultar o back-end
+      // para recuperar o registro e colocá-lo para edição
+      try {
+        this.reserva = await this.reservaSrv.obterUm(params['id'])
+        this.title = 'Atualizando reserva'
+        if (this.reserva.is_reserva) {
+          this.isreserva = false // Caso seja reserva esconde parte do formulário cadastro
+        }
+      }
+      catch(erro) {
+        this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})
+      }
+    }
+  
+  }
+
+  async voltar(form: NgForm) {
+
+    let result = true;
+    console.log(form);
+    // form.dirty = formulário "sujo", não salvo (via código)
+    // form.touched = o conteúdo de algum campo foi alterado (via usuário)
+    if(form.dirty && form.touched) {
+      let dialogRef = this.dialog.open(ConfirmDlgComponent, {
+        width: '50%',
+        data: { question: 'Há dados não salvos. Deseja realmente voltar?' }
+      });
+
+      result = await dialogRef.afterClosed().toPromise();
+
+    }
+
+    if(result) {
+      this.router.navigate(['/reserva']); // Retorna à listagem
+    }
+  }
+
+  async salvar(form: NgForm) {
+    // Só tenta salvar se o form for válido
+    if(form.valid) {
+      try {
+        let msg = 'Reserva atualizado com sucesso.'
+        // Se existir o campo _id, é caso de atualização
+        if(this.reserva._id) {
+          await this.reservaSrv.atualizar(this.reserva)
+        }
+        // Senão, é caso de criar um novo reserva
+        else {
+          await this.reservaSrv.novo(this.reserva)
+          msg = 'Reserva criado com sucesso.'
+        }
+        // Dá o feedback para o usuário
+        this.snackBar.open(msg, 'Entendi', {duration: 5000})
+        // Voltar à listagem
+        this.router.navigate(['/reserva'])
+      }
+      catch(erro) {
+        this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})
+      }
+    }
   }
 
 }

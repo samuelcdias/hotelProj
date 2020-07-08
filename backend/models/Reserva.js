@@ -10,8 +10,7 @@ const esquema = mongoose.Schema({
         required: true
     },
     hora_entrada: {
-        type: Date,
-        required: true
+        type: Date
     },
     hora_saida: {
         type: Date

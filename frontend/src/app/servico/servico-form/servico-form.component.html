@@ -1,1 +1,53 @@
-<p>servico-form works!</p>
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+    <mat-form-field>
+        <mat-label>Número</mat-label>
+        <input matInput [(ngModel)]="servico.numero" name="numero" readonly>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Tipo</mat-label>
+        <input matInput [(ngModel)]="servico.tipo" name="tipo" required placeholder="Informe o tipo de serviço."
+            step="1">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <textarea matInput [(ngModel)]="servico.descricao" name="descricao"
+            placeholder="Informe uma descrição para o servico." rows="4"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label> Preço custo </mat-label>
+        <input type="number" matInput [(ngModel)]="servico.preco_custo" name="preco_custo" required
+            placeholder="Informe o preço de custo do serviço.">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label> Preço venda </mat-label>
+        <input type="number" matInput [(ngModel)]="servico.preco_venda" name="preco_venda" required
+            placeholder="Informe o preço de custo do serviço.">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Selecione o funcionario" [(ngModel)]="servico.funcionario" name="funcionario">
+           <mat-option *ngFor="let fun of funcionarios" [value]="fun._id">
+              {{fun.nome}}
+           </mat-option>
+        </mat-select>
+     </mat-form-field>
+
+    <mat-toolbar class="form-buttons">
+        <mat-toolbar-row>
+            <button mat-raised-button type="submit" color="accent">
+                Salvar
+            </button>
+            <button mat-raised-button type="button" (click)="voltar(f)">
+                Voltar
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+</form>

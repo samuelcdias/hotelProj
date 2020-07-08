@@ -9,7 +9,8 @@
 
    <mat-form-field>
       <mat-label>CPF</mat-label>
-      <input matInput [(ngModel)]="funcionario.cpf" name="cpf" required placeholder="Informe o CPF." mask="000.000.000-00">
+      <input matInput [(ngModel)]="funcionario.cpf" name="cpf" required placeholder="Informe o CPF."
+         mask="000.000.000-00">
    </mat-form-field>
 
    <mat-form-field>
@@ -19,32 +20,39 @@
 
    <mat-form-field>
       <mat-label>Endereço</mat-label>
-      <textarea matInput [(ngModel)]="funcionario.endereco" name="endereco" placeholder="Informe o endereço." rows="4"></textarea>
+      <textarea matInput [(ngModel)]="funcionario.endereco" name="endereco" placeholder="Informe o endereço."
+         rows="4"></textarea>
    </mat-form-field>
 
    <mat-form-field>
       <mat-label>Telefone</mat-label>
       <mat-icon matPrefix>contact_phone</mat-icon>
-      <input matInput [(ngModel)]="funcionario.telefone" name="telefone" required placeholder="Informe o telefone.">
+      <input matInput [(ngModel)]="funcionario.telefone" mask="(00) 00000-0009" name="telefone" required
+         placeholder="Informe o telefone.">
    </mat-form-field>
 
    <mat-form-field>
       <mat-label>E-mail</mat-label>
       <mat-icon matPrefix>contact_mail</mat-icon>
-      <input type="email" matInput [(ngModel)]="funcionario.email" name="email"placeholder="Informe o email.">
+      <input type="email" matInput [(ngModel)]="funcionario.email" name="email" placeholder="Informe o email.">
    </mat-form-field>
 
    <mat-form-field>
-    <mat-label>Data de nascimento</mat-label>
-    <input name="data_nascimento" matInput [(ngModel)]="funcionario.data_nascimento" [matDatepicker]="data_nascimento" required>
-    <mat-datepicker-toggle matSuffix [for]="data_nascimento"></mat-datepicker-toggle>
-    <mat-datepicker #data_nascimento></mat-datepicker>
- </mat-form-field>
+      <mat-label>Data de nascimento</mat-label>
+      <input name="data_nascimento" matInput [(ngModel)]="funcionario.data_nascimento" [matDatepicker]="data_nascimento"
+         required>
+      <mat-datepicker-toggle matSuffix [for]="data_nascimento"></mat-datepicker-toggle>
+      <mat-datepicker #data_nascimento></mat-datepicker>
+   </mat-form-field>
 
- <mat-form-field>
-   <mat-label>Função</mat-label>
-   <input matInput [(ngModel)]="funcionario.funcao_area" name="funcao_area" required placeholder="Informe a função.">
- </mat-form-field>
+   <mat-form-field>
+      <mat-select placeholder="Selecione a função do funcionário" required [(ngModel)]="funcionario.funcao_area"
+         name="funcao_area">
+         <mat-option *ngFor="let funcao of funcoes_areas" [value]="funcao.codigo">
+            {{ funcao.nome }}
+         </mat-option>
+      </mat-select>
+   </mat-form-field>
 
    <mat-toolbar class="form-buttons">
       <mat-toolbar-row>

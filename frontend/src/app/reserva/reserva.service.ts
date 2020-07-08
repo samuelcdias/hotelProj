@@ -32,4 +32,8 @@ export class ReservaService {
     return this.http.get(this.apiUri + '/' + id).toPromise()
   }
 
+  filtrarReserva() {
+    return this.http.get(this.apiUri + '/filtro').toPromise()
+  }
+
 }

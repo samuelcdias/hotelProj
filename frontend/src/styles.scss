@@ -6,6 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 #container {
     padding: 20px 38px;
+    margin-bottom: 50px;
 }
 .mat-table {
     width: 100%;
@@ -30,7 +31,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-bottom: 20px;
     text-align: right;
 
-    mat_raised-button {
+    .mat_raised-button {
         font-size: 120%;
     }
 }
@@ -60,4 +61,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         display: flex;
         justify-content:space-around;
     }
+}
+
+.invisible {
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
 }

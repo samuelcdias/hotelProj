@@ -1,1 +1,67 @@
-<p>quarto-form works!</p>
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+   <mat-form-field>
+      <mat-label>Número</mat-label>
+      <input matInput [(ngModel)]="quarto.numero" name="numero" required placeholder="Informe o número do quarto.">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>Nº de camas</mat-label>
+      <input matInput [(ngModel)]="quarto.nro_camas" name="nro_camas" required placeholder="Informe a quantidade de camas." step="1">
+   </mat-form-field>
+
+   <!-- <mat-form-field>
+      <mat-checkbox matInput [(ngModel)]="quarto.cama_casal" name="cama_casal" [(checked)]="IsChecked">Cama de Casal?</mat-checkbox>
+   </mat-form-field> -->
+
+   <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <textarea matInput [(ngModel)]="quarto.descricao" name="descricao" placeholder="Informe uma descrição para o quarto." rows="4"></textarea>
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label> Cama extra </mat-label>
+      <input type="number" matInput [(ngModel)]="quarto.cama_extra" name="cama_extra" required placeholder="Informe a quantidade de camas extras no quarto.">
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-label>Data da última manutenção</mat-label>
+      <input name="dt_manutencao" matInput [(ngModel)]="quarto.dt_manutencao" [matDatepicker]="dt_manutencao">
+      <mat-datepicker-toggle matSuffix [for]="dt_manutencao"></mat-datepicker-toggle>
+      <mat-datepicker #dt_manutencao></mat-datepicker>
+   </mat-form-field>
+
+   <mat-form-field>
+      <mat-select placeholder="Selecione o status do quarto" required [(ngModel)]="quarto.status" name="status">
+          <mat-option *ngFor="let st of status_list" [value]="st.nome">
+              {{ st.nome }}
+          </mat-option>
+      </mat-select>
+   </mat-form-field> 
+
+   <mat-form-field>
+      <mat-label>Preço Alta</mat-label>
+      <mat-icon matPrefix>attach_money</mat-icon>
+      <input type="number" name="preco_alta" matInput [(ngModel)]="quarto.preco_alta"  required>
+   </mat-form-field>
+
+   <mat-form-field>
+        <mat-label>Preço Baixa</mat-label>
+        <mat-icon matPrefix>attach_money</mat-icon>
+        <input type="number" name="preco_baixa" matInput [(ngModel)]="quarto.preco_baixa"  required>
+   </mat-form-field>
+
+   <mat-toolbar class="form-buttons">
+      <mat-toolbar-row>
+         <button mat-raised-button type="submit" color="accent">
+            Salvar
+         </button>
+         <button mat-raised-button type="button" (click)="voltar(f)">
+            Voltar
+         </button>
+      </mat-toolbar-row>
+   </mat-toolbar>
+
+</form>

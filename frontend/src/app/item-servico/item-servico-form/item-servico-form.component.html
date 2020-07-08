@@ -1,1 +1,49 @@
-<p>item-servico-form works!</p>
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+    <mat-form-field>
+        <mat-select placeholder="Selecione o reserva" [(ngModel)]="itemServico.reserva" name="reserva" [disabled]="reservaDisabled">
+            <mat-option *ngFor="let reserva of reservas" [value]="reserva._id">
+                ({{reserva._id}}) {{reserva.dt_entrada_reserva | date:'dd/MM/yyyy'}} - {{reserva.dt_entrada_reserva | date:'dd/MM/yyyy'}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Número </mat-label>
+        <input matInput [(ngModel)]="itemServico.numero" name="numero" readonly
+            placeholder="Informe o código do serviço.">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Hora do serviço</mat-label>
+        <input name="data_hora" matInput [(ngModel)]="itemServico.data_hora" readonly date="dd//MM/yyyy -">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Selecione o servico" [(ngModel)]="itemServico.servico" name="servico">
+            <mat-option *ngFor="let servico of servicos" [value]="servico._id">
+                {{servico.numero}} - {{servico.descricao}} ({{servico.preco_venda}})
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Quantidade</mat-label>
+        <input matInput [(ngModel)]="itemServico.quantidade" name="quantidade" required
+            step="1" type="number" placeholder="Informe a quantidade.">
+    </mat-form-field>
+
+    <mat-toolbar class="form-buttons">
+        <mat-toolbar-row>
+            <button mat-raised-button type="submit" color="accent">
+                Salvar
+            </button>
+            <button mat-raised-button type="button" (click)="voltar(f)">
+                Voltar
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+</form>

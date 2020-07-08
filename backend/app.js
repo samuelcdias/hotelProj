@@ -32,7 +32,7 @@ app.use('/funcionario', funcionario)
 const hospede = require('./routes/hospede')
 app.use('/hospede', hospede)
 
-const itemServico = require('./routes/itemServico')
+const itemServico = require('./routes/item_servico')
 app.use('/item-servico', itemServico)
 
 const quarto = require('./routes/quarto')
@@ -44,8 +44,8 @@ app.use('/reserva', reserva)
 const servico = require('./routes/servico')
 app.use('/servico', servico)
 
-const tipoTemporada = require('./routes/tipoTemporada')
-app.use('/tipoTemporada', tipoTemporada)
+const tipoTemporada = require('./routes/tipo_temporada')
+app.use('/tipo-temporada', tipoTemporada)
 
 module.exports = app;
 

@@ -14,7 +14,7 @@ const esquema = mongoose.Schema({
    },
    cama_casal: {
       type: Boolean,
-      required: true
+      default: false,
    },
    descricao: {
       type: String
@@ -32,6 +32,7 @@ const esquema = mongoose.Schema({
    status: {
       type: String,
       required: true,
+      default: 'Disponível',
       enum: ['Disponível','Em manutenção','Executando Limpeza', 'Ocupado', 'Indisponível', 'Desativado']
    },
    preco_alta: {

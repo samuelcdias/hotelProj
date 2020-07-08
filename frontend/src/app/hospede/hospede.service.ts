@@ -32,4 +32,8 @@ export class HospedeService {
     return this.http.get(this.apiUri + '/' + id).toPromise()
   }
 
+  filtrarReserva(id: string) {
+    return this.http.get(this.apiUri + '/reserva/' + id).toPromise()
+  }
+
 }

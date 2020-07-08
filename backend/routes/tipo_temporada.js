@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/tipoTemporada')
+const controller = require('../controllers/tipo_temporada')
 
 router.post('/', controller.novo)
 router.get('/', controller.listar)

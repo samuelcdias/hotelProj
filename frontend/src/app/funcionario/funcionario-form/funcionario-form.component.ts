@@ -1,8 +1,10 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FuncionarioService } from '../funcionario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms'
+import { ConfirmDlgComponent } from 'src/app/ui/confirm-dlg/confirm-dlg.component';
 
 @Component({
   selector: 'app-funcionario-form',
@@ -15,11 +17,31 @@ export class FuncionarioFormComponent implements OnInit {
 
   funcionario : any = {}   // Objeto vazio
 
+  funcoes_areas : any = [
+    {
+      nome: "SG - Serviços Gerais",
+      codigo: "SG"
+    },
+    {
+      nome: "CZ - Cozinheiro",
+      codigo: "CZ"
+    },
+    {
+      nome: "AT - Atendente",
+      codigo: "AT"
+    },
+    {
+      nome: "GE - Gerente",
+      codigo: "GE"
+    }
+  ]
+
   constructor(
     private funcionarioSrv : FuncionarioService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) { }
 
   async ngOnInit() {
@@ -41,8 +63,25 @@ export class FuncionarioFormComponent implements OnInit {
   
   }
 
-  voltar(x) {
+  async voltar(form: NgForm) {
 
+    let result = true;
+    console.log(form);
+    // form.dirty = formulário "sujo", não salvo (via código)
+    // form.touched = o conteúdo de algum campo foi alterado (via usuário)
+    if(form.dirty && form.touched) {
+      let dialogRef = this.dialog.open(ConfirmDlgComponent, {
+        width: '50%',
+        data: { question: 'Há dados não salvos. Deseja realmente voltar?' }
+      });
+
+      result = await dialogRef.afterClosed().toPromise();
+
+    }
+
+    if(result) {
+      this.router.navigate(['/funcionario']); // Retorna à listagem
+    }
   }
 
   async salvar(form: NgForm) {

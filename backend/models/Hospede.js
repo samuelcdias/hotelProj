@@ -16,7 +16,7 @@ const esquema = mongoose.Schema({
         ref: 'Quarto',
         required: true
     },
-    isResponsavel: {
+    is_responsavel: {
         type: Boolean,
         required: true,
         default: false

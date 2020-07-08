@@ -1,11 +1,15 @@
 const mongoose = require('mongoose')
 
 const esquema = mongoose.Schema({
-    data: {
+    data_inicio: {
        type: Date,
        required: true
     },
-    isAltaTemporada: {
+    data_fim: {
+        type: Date,
+        required: true,
+     },
+    is_alta_temporada: {
         type: Boolean,
         required: true,
         default: false
@@ -19,4 +23,4 @@ const esquema = mongoose.Schema({
    3º -> Nome da coleção (collection) em que os objetos criados a partir do modelo serão armazenados no
       MongoDB
 */
-module.exports = mongoose.model('tipoTemporada', esquema, 'tiposTemporada')
+module.exports = mongoose.model('TipoTemporada', esquema, 'tipos_temporada')

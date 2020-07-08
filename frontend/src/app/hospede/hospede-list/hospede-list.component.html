@@ -1,1 +1,62 @@
-<p>hospede-list works!</p>
+<h1>Listagem de hospedes</h1>
+
+<div class="new-item-button-container">
+  <a mat-raised-button color="accent" [routerLink]="['/hospede/novo']">
+    <mat-icon>add_box</mat-icon>Cadastrar novo hospede
+  </a>
+</div>
+
+<table mat-table [dataSource]="hospedes" class="mat-elevation-z4">
+
+  <!--- Note that these columns can be defined in any order.
+         The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- reserva Column -->
+  <ng-container matColumnDef="reserva">
+    <th mat-header-cell *matHeaderCellDef> Reserva </th>
+    <td mat-cell *matCellDef="let hospede">  ({{hospede.reserva?._id}}) {{hospede.reserva?.dt_entrada_reserva | date:'dd/MM/yyyy'}} - {{hospede.reserva?.dt_saida_reserva | date:'dd/MM/yyyy'}}
+    </td>
+  </ng-container>
+
+  <!-- cliente Column -->
+  <ng-container matColumnDef="cliente">
+    <th mat-header-cell *matHeaderCellDef> Cliente </th>
+    <td mat-cell *matCellDef="let hospede"> {{hospede.cliente?.nome}} </td>
+  </ng-container>
+
+  <!-- quarto Column -->
+  <ng-container matColumnDef="quarto">
+    <th mat-header-cell *matHeaderCellDef> Nº quarto </th>
+    <td mat-cell *matCellDef="let hospede"> {{hospede.quarto?.numero}} </td>
+  </ng-container>
+
+  <!-- is_responsavel Column -->
+  <ng-container matColumnDef="is_responsavel">
+    <th mat-header-cell *matHeaderCellDef> Responsável quarto? </th>
+    <td mat-cell *matCellDef="let hospede"> {{hospede.is_responsavel ? 'Sim' : 'Não'}} </td>
+  </ng-container> 
+
+  <!-- editar Column -->
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef> Editar </th>
+    <td mat-cell *matCellDef="let hospede">
+      <a mat-raised-button color="accent" title="Editar" 
+        [routerLink]="['/hospede', hospede._id]">
+        <mat-icon>edit</mat-icon>
+      </a>
+    </td>
+  </ng-container>
+
+  <!-- excluir Column -->
+  <ng-container matColumnDef="excluir">
+    <th mat-header-cell *matHeaderCellDef> Excluir </th>
+    <td mat-cell *matCellDef="let hospede">
+      <button mat-raised-button color="warn" title="Excluir" (click)="excluirItem(hospede._id)">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
