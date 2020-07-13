@@ -126,10 +126,10 @@ async function busca(req, res) {
 
 controller.filtrarReserva = async (req, res) => {
    let id = req.params.id
-
+   console.log(req.params.id)
    try {
       // Só os itens de venda de uma determinada venda
-      const lista = await ItemServico.find({servico: id})
+      const lista = await ItemServico.find({reserva: id})
          .populate('servico')
          .populate('reserva')
       res.send(lista)

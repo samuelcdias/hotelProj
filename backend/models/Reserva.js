@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const esquema = mongoose.Schema({
+    codigo: {
+        type: String,
+        required: true
+    },
     dt_entrada_reserva: {
         type: Date,
         required: true

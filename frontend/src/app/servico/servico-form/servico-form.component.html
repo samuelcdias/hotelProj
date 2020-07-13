@@ -32,7 +32,7 @@
     </mat-form-field>
 
     <mat-form-field>
-        <mat-select placeholder="Selecione o funcionario" [(ngModel)]="servico.funcionario" name="funcionario">
+        <mat-select placeholder="Funcionário que executou o serviço (opcional)" [(ngModel)]="servico.funcionario" name="funcionario">
            <mat-option *ngFor="let fun of funcionarios" [value]="fun._id">
               {{fun.nome}}
            </mat-option>

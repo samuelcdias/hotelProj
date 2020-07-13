@@ -4,10 +4,12 @@
     </mat-icon>
  </button>
  <mat-menu #menu="matMenu">
-   <a [routerLink]="['/reserva']" mat-menu-item>Reserva</a>
    <a [routerLink]="['/quarto']" mat-menu-item>Quarto</a>
+   <a [routerLink]="['/reserva']" mat-menu-item>Reserva</a>
+   <a [routerLink]="['/hospede']" mat-menu-item>Hospedes</a>
+   <a [routerLink]="['/item-servico']" mat-menu-item>Serviços fornecidos</a>
    <a [routerLink]="['/servico']" mat-menu-item>Serviço</a>
-   <a [routerLink]="['/item-servico']" mat-menu-item>Item de servico</a>
    <a [routerLink]="['/cliente']" mat-menu-item>Cliente</a>
    <a [routerLink]="['/funcionario']" mat-menu-item>Funcionário</a>
+   <a [routerLink]="['/tipo-temporada']" mat-menu-item>Temporada</a>
  </mat-menu>

@@ -19,7 +19,10 @@ export class ReservaFormComponent implements OnInit {
 
   isreserva: Boolean = true
 
+  today: Date = new Date()
+
   reserva : any = {
+    codigo: String(this.today.getFullYear()) + String(this.today.getMonth()) + String(this.today.getDay()) + 'RS' + String(this.today.getTime()),
     is_reserva: true,
     tipo_temporada: "5f01ff40813d8610d41e4e1e"
   } 
@@ -35,6 +38,9 @@ export class ReservaFormComponent implements OnInit {
   async ngOnInit() {
     // Capturando os parâmetros da rota
     let params = this.actRoute.snapshot.params
+    if (this.reserva.is_reserva) {
+      this.isreserva = false // Caso seja reserva esconde parte do formulário cadastro
+    }
 
     // Existe um parâmetro chamado :id?
     if(params['id']) {
@@ -43,9 +49,6 @@ export class ReservaFormComponent implements OnInit {
       try {
         this.reserva = await this.reservaSrv.obterUm(params['id'])
         this.title = 'Atualizando reserva'
-        if (this.reserva.is_reserva) {
-          this.isreserva = false // Caso seja reserva esconde parte do formulário cadastro
-        }
       }
       catch(erro) {
         this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})
@@ -92,7 +95,7 @@ export class ReservaFormComponent implements OnInit {
         // Dá o feedback para o usuário
         this.snackBar.open(msg, 'Entendi', {duration: 5000})
         // Voltar à listagem
-        this.router.navigate(['/reserva'])
+        this.router.navigate([`/reserva/${this.reserva._id}`])
       }
       catch(erro) {
         this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})

@@ -13,7 +13,7 @@ import { ConfirmDlgComponent } from 'src/app/ui/confirm-dlg/confirm-dlg.componen
 })
 export class FuncionarioFormComponent implements OnInit {
 
-  title: string = 'Novo Funcionario'
+  title: string = 'Novo Funcionário'
 
   funcionario : any = {}   // Objeto vazio
 
@@ -54,7 +54,7 @@ export class FuncionarioFormComponent implements OnInit {
       // para recuperar o registro e colocá-lo para edição
       try {
         this.funcionario = await this.funcionarioSrv.obterUm(params['id'])
-        this.title = 'Atualizando funcionario'
+        this.title = 'Atualizando funcionário'
       }
       catch(erro) {
         this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})

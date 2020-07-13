@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +9,7 @@ import { MainToolbarComponent } from './ui/main-toolbar/main-toolbar.component';
 import { MainMenuComponent } from './ui/main-menu/main-menu.component';
 import { MainFooterComponent } from './ui/main-footer/main-footer.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { ConfirmDlgComponent } from './ui/confirm-dlg/confirm-dlg.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
@@ -40,7 +40,7 @@ registerLocaleData(localePt);
 // yarn add @angular/material-moment-adapter moment
 
 import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
-import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core'; 
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 
 /**********************************************/
 @NgModule({
@@ -76,14 +76,13 @@ import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
     MaterialModule,
     NgxMaskModule.forRoot(),
      /**** Datas em português no MatDatepicker  ****/
-    MatMomentDateModule
+    MatMomentDateModule,
      /**********************************************/
   ],
   providers: [
     /**** Datas em português no MatDatepicker  ****/
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
-    /**********************************************/
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ],
   bootstrap: [AppComponent]
 })

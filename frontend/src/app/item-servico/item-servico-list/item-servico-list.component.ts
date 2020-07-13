@@ -16,7 +16,7 @@ export class ItemServicoListComponent implements OnInit {
   itemServicos : any = []
 
   displayedColumns : string[] = [
-     'numero', 'data_hora', 'servico', 'quantidade', 'editar', 'excluir'
+     'data_hora', 'servico', 'quantidade', 'editar', 'excluir'
   ]
 
   constructor(
@@ -29,6 +29,7 @@ export class ItemServicoListComponent implements OnInit {
     // Se for passado o parâmetro reserva pelo componente pai
     if(this.reserva != '') {
       this.itemServicos = await this.itemServicoSrv.filtrarReserva(this.reserva)
+      console.log(this.itemServicos)
     }
     else {
       this.itemServicos = await this.itemServicoSrv.listar()

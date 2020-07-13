@@ -15,7 +15,7 @@ import { ConfirmDlgComponent } from 'src/app/ui/confirm-dlg/confirm-dlg.componen
 })
 export class TipoTemporadaFormComponent implements OnInit {
 
-  title: string = 'Novo período de alta temporada'
+  title: string = 'Novo período de temporada'
 
   minDate: Date
   maxDate: Date
@@ -45,7 +45,7 @@ export class TipoTemporadaFormComponent implements OnInit {
       // para recuperar o registro e colocá-lo para edição
       try {
         this.tipoTemporada = await this.tipoTemporadaSrv.obterUm(params['id'])
-        this.title = 'Atualizando tipotemporada'
+        this.title = 'Atualizando temporada'
         
       }
       catch(erro) {
@@ -81,7 +81,7 @@ export class TipoTemporadaFormComponent implements OnInit {
     if(form.valid) {
       console.log(form)
       try {
-        let msg = 'TipoTemporada atualizado com sucesso.'
+        let msg = 'Temporada atualizado com sucesso.'
         // Se existir o campo _id, é caso de atualização
         if(this.tipoTemporada._id) {
           await this.tipoTemporadaSrv.atualizar(this.tipoTemporada)
@@ -89,7 +89,7 @@ export class TipoTemporadaFormComponent implements OnInit {
         // Senão, é caso de criar um novo tipotemporada
         else {
           await this.tipoTemporadaSrv.novo(this.tipoTemporada)
-          msg = 'TipoTemporada criado com sucesso.'
+          msg = 'Temporada criada com sucesso.'
         }
         // Dá o feedback para o usuário
         this.snackBar.open(msg, 'Entendi', {duration: 5000})

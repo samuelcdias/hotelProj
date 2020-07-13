@@ -12,9 +12,9 @@
       <input matInput [(ngModel)]="quarto.nro_camas" name="nro_camas" required placeholder="Informe a quantidade de camas." step="1">
    </mat-form-field>
 
-   <!-- <mat-form-field>
-      <mat-checkbox matInput [(ngModel)]="quarto.cama_casal" name="cama_casal" [(checked)]="IsChecked">Cama de Casal?</mat-checkbox>
-   </mat-form-field> -->
+   <div class="mat-form-field">
+      <mat-checkbox matInput [(ngModel)]="quarto.cama_casal" name="cama_casal">Cama de casal?</mat-checkbox>
+   </div>
 
    <mat-form-field>
       <mat-label>Descrição</mat-label>

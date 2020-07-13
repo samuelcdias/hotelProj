@@ -14,7 +14,7 @@ export class TipoTemporadaListComponent implements OnInit {
   tiposTemporada : any = []
 
   displayedColumns : string[] = [
-    'data_inicio', 'data_fim', 'is_alta_temporada', 'editar', 'excluir'
+    'data_inicio', 'is_alta_temporada', 'editar', 'excluir'
   ]
 
   constructor(

@@ -20,7 +20,7 @@
   <!-- cpf Column -->
   <ng-container matColumnDef="cpf">
     <th mat-header-cell *matHeaderCellDef> CPF </th>
-    <td mat-cell *matCellDef="let cliente"> {{cliente.cpf}} </td>
+    <td mat-cell *matCellDef="let cliente"> {{cliente.cpf | mask:'000.000.000-00'}} </td>
   </ng-container>
 
   <!-- telefone Column -->

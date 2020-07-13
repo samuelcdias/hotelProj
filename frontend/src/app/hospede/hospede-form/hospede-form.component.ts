@@ -71,7 +71,7 @@ export class HospedeFormComponent implements OnInit {
 
     // Entidades relacionadas
     try {
-      this.reservas = await this.reservaSrv.listar()
+      this.reservas = await this.reservaSrv.filtrarReserva()
       this.clientes = await this.clienteSrv.listar()
       this.quartos = await this.quartoSrv.listar()
     }

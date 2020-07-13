@@ -47,7 +47,7 @@ export class ItemServicoFormComponent implements OnInit {
       // para recuperar o registro e colocá-lo para edição
       try {
         this.itemServico = await this.itemServicoSrv.obterUm(params['id'])
-        this.title = 'Atualizando itemServico'
+        this.title = 'Atualizando item de servico'
 
         // Impede a alteração da reserva relacionada ao item
         this.reservaDisabled = true
