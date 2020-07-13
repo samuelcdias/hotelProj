@@ -16,7 +16,7 @@ import { ConfirmDlgComponent } from 'src/app/ui/confirm-dlg/confirm-dlg.componen
 })
 export class ServicoFormComponent implements OnInit {
 
-  title: string = 'Novo Servico'
+  title: string = 'Novo Serviço'
 
   servico : any = {} 
 
@@ -42,7 +42,7 @@ export class ServicoFormComponent implements OnInit {
       // para recuperar o registro e colocá-lo para edição
       try {
         this.servico = await this.servicoSrv.obterUm(params['id'])
-        this.title = 'Atualizando servico'
+        this.title = 'Atualizando serviço'
         
       }
       catch(erro) {
@@ -86,7 +86,7 @@ export class ServicoFormComponent implements OnInit {
     // Só tenta salvar se o form for válido
     if(form.valid) {
       try {
-        let msg = 'Servico atualizado com sucesso.'
+        let msg = 'Serviço atualizado com sucesso.'
         // Se existir o campo _id, é caso de atualização
         if(this.servico._id) {
           await this.servicoSrv.atualizar(this.servico)
@@ -94,7 +94,7 @@ export class ServicoFormComponent implements OnInit {
         // Senão, é caso de criar um novo servico
         else {
           await this.servicoSrv.novo(this.servico)
-          msg = 'Servico criado com sucesso.'
+          msg = 'Serviço criado com sucesso.'
         }
         // Dá o feedback para o usuário
         this.snackBar.open(msg, 'Entendi', {duration: 5000})

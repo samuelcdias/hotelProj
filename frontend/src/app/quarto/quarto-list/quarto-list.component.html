@@ -23,12 +23,6 @@
     <td mat-cell *matCellDef="let quarto"> {{quarto.nro_camas}} </td>
   </ng-container>
 
-  <!-- cama_casal Column -->
-  <ng-container matColumnDef="cama_casal">
-    <th mat-header-cell *matHeaderCellDef> Cama de casal? </th>
-    <td mat-cell *matCellDef="let quarto"> {{quarto.cama_casal ? "Sim" : "Não"}} </td>
-  </ng-container>
-
   <!-- descricao Column -->
   <ng-container matColumnDef="descricao">
     <th mat-header-cell *matHeaderCellDef> Descrição </th>

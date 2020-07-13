@@ -1,3 +1,4 @@
+import { TipoTemporadaService } from './../../tipo-temporada/tipo-temporada.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { ReservaService } from '../reserva.service';
@@ -22,12 +23,16 @@ export class ReservaFormComponent implements OnInit {
   today: Date = new Date()
 
   reserva : any = {
-    codigo: String(this.today.getFullYear()) + String(this.today.getMonth()) + String(this.today.getDay()) + 'RS' + String(this.today.getTime()),
+    codigo: String(this.today.getFullYear()) + String(this.today.getMonth()) + String(this.today.getDate()) + 'RS' + String(this.today.getTime()),
     is_reserva: true,
     tipo_temporada: "5f01ff40813d8610d41e4e1e"
   } 
 
+  // entidades relacionadas
+  tiposTemporada : any = []
+
   constructor(
+    private tipoTemporadaSrv : TipoTemporadaService,
     private reservaSrv : ReservaService,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -38,9 +43,6 @@ export class ReservaFormComponent implements OnInit {
   async ngOnInit() {
     // Capturando os parâmetros da rota
     let params = this.actRoute.snapshot.params
-    if (this.reserva.is_reserva) {
-      this.isreserva = false // Caso seja reserva esconde parte do formulário cadastro
-    }
 
     // Existe um parâmetro chamado :id?
     if(params['id']) {
@@ -49,10 +51,21 @@ export class ReservaFormComponent implements OnInit {
       try {
         this.reserva = await this.reservaSrv.obterUm(params['id'])
         this.title = 'Atualizando reserva'
+        if (!this.reserva.is_reserva) {
+          this.isreserva = false // Caso seja reserva esconde parte do formulário cadastro
+        }
       }
       catch(erro) {
         this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})
       }
+    }
+
+     // Entidades relacionadas
+     try {
+      this.tiposTemporada = await this.tipoTemporadaSrv.listar()
+    }
+    catch(erro) {
+      this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})  
     }
   
   }
@@ -95,7 +108,7 @@ export class ReservaFormComponent implements OnInit {
         // Dá o feedback para o usuário
         this.snackBar.open(msg, 'Entendi', {duration: 5000})
         // Voltar à listagem
-        this.router.navigate([`/reserva/${this.reserva._id}`])
+        this.router.navigate([`/reserva`])
       }
       catch(erro) {
         this.snackBar.open(erro.message, 'Que pena!', {duration: 5000})

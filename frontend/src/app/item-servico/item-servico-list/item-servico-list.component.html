@@ -2,7 +2,7 @@
 
 <div class="new-item-button-container">
   <a mat-raised-button color="accent" [routerLink]="['/item-servico/novo']">
-    <mat-icon>add_box</mat-icon>Cadastrar novo itemServico
+    <mat-icon>add_box</mat-icon>Cadastrar novo item de serviço
   </a>
 </div>
 
@@ -14,7 +14,7 @@
   <!-- data_hora Column -->
   <ng-container matColumnDef="data_hora">
     <th mat-header-cell *matHeaderCellDef> Hora </th>
-    <td mat-cell *matCellDef="let itemServico"> {{itemServico.data_hora | date:'dd/MM/yyyy - hh:mm:ss'}} </td>
+    <td mat-cell *matCellDef="let itemServico"> {{itemServico.data_hora | date:'dd/MM/yyyy - HH:mm:ss'}} </td>
   </ng-container>
 
   <!-- servico Column -->
@@ -28,6 +28,26 @@
     <th mat-header-cell *matHeaderCellDef> Qtde </th>
     <td mat-cell *matCellDef="let itemServico"> {{itemServico.quantidade}} </td>
   </ng-container>
+
+  <!-- preco_total Column -->
+   <!-- CAMPO CALCULADO -->
+   <ng-container matColumnDef="preco_venda">
+    <th mat-header-cell *matHeaderCellDef> Preço unitário </th>
+    <td mat-cell *matCellDef="let itemServico"> 
+       {{ (itemServico.servico?.preco_venda)
+          | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} 
+    </td>
+ </ng-container>
+
+  <!-- preco_total Column -->
+   <!-- CAMPO CALCULADO -->
+   <ng-container matColumnDef="preco_total">
+    <th mat-header-cell *matHeaderCellDef> Preço total </th>
+    <td mat-cell *matCellDef="let itemServico"> 
+       {{ (itemServico.quantidade * itemServico.servico?.preco_venda)
+          | currency:'BRL':'symbol':'1.2-2':'pt-BR' }} 
+    </td>
+ </ng-container>
 
   <!-- editar Column -->
   <ng-container matColumnDef="editar">

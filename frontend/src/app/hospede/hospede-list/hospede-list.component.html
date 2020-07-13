@@ -1,8 +1,8 @@
-<h1>Listagem de hospedes</h1>
+<h1>Listagem de hóspedes</h1>
 
 <div class="new-item-button-container">
   <a mat-raised-button color="accent" [routerLink]="['/hospede/novo']">
-    <mat-icon>add_box</mat-icon>Cadastrar novo hospede
+    <mat-icon>add_box</mat-icon>Cadastrar novo hóspede
   </a>
 </div>
 
@@ -14,7 +14,7 @@
   <!-- reserva Column -->
   <ng-container matColumnDef="reserva">
     <th mat-header-cell *matHeaderCellDef> Reserva </th>
-    <td mat-cell *matCellDef="let hospede">  ({{hospede.reserva?._id}}) {{hospede.reserva?.dt_entrada_reserva | date:'dd/MM/yyyy'}} - {{hospede.reserva?.dt_saida_reserva | date:'dd/MM/yyyy'}}
+    <td mat-cell *matCellDef="let hospede">  ({{hospede.reserva?.codigo}}) {{hospede.reserva?.dt_entrada_reserva | date:'dd/MM/yyyy'}} - {{hospede.reserva?.dt_saida_reserva | date:'dd/MM/yyyy'}}
     </td>
   </ng-container>
 

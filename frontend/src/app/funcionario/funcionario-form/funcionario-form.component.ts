@@ -88,7 +88,7 @@ export class FuncionarioFormComponent implements OnInit {
     // Só tenta salvar se o form for válido
     if(form.valid) {
       try {
-        let msg = 'Funcionario atualizado com sucesso.'
+        let msg = 'Funcionário atualizado com sucesso.'
         // Se existir o campo _id, é caso de atualização
         if(this.funcionario._id) {
           await this.funcionarioSrv.atualizar(this.funcionario)
@@ -96,7 +96,7 @@ export class FuncionarioFormComponent implements OnInit {
         // Senão, é caso de criar um novo funcionario
         else {
           await this.funcionarioSrv.novo(this.funcionario)
-          msg = 'Funcionario criado com sucesso.'
+          msg = 'Funcionário criado com sucesso.'
         }
         // Dá o feedback para o usuário
         this.snackBar.open(msg, 'Entendi', {duration: 5000})

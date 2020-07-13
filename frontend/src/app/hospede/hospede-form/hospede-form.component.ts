@@ -18,7 +18,7 @@ import { Location } from '@angular/common';
 })
 export class HospedeFormComponent implements OnInit {
 
-  title: string = 'Novo Hospede'
+  title: string = 'Novo Hóspede'
 
   reservaDisabled : boolean = false
 
@@ -51,7 +51,7 @@ export class HospedeFormComponent implements OnInit {
       // para recuperar o registro e colocá-lo para edição
       try {
         this.hospede = await this.hospedeSrv.obterUm(params['id'])
-        this.title = 'Atualizando hospede'
+        this.title = 'Atualizando hóspede'
         
         this.reservaDisabled = true
       }
@@ -106,7 +106,7 @@ export class HospedeFormComponent implements OnInit {
     // Só tenta salvar se o form for válido
     if(form.valid) {
       try {
-        let msg = 'Hospede atualizado com sucesso.'
+        let msg = 'Hóspede atualizado com sucesso.'
         // Se existir o campo _id, é caso de atualização
         if(this.hospede._id) {
           await this.hospedeSrv.atualizar(this.hospede)
@@ -114,7 +114,7 @@ export class HospedeFormComponent implements OnInit {
         // Senão, é caso de criar um novo hospede
         else {
           await this.hospedeSrv.novo(this.hospede)
-          msg = 'Hospede criado com sucesso.'
+          msg = 'Hóspede criado com sucesso.'
         }
         // Dá o feedback para o usuário
         this.snackBar.open(msg, 'Entendi', {duration: 5000})

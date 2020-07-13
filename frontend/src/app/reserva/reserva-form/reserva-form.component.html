@@ -21,21 +21,21 @@
       <mat-datepicker #dt_saida_reserva></mat-datepicker>
    </mat-form-field>
 
-   <mat-form-field [ngClass]="{'invisible': !isreserva}">
+   <mat-form-field [ngClass]="{'invisible': isreserva}">
       <mat-label>Hora de entrada</mat-label>
       <input name="hora_entrada" matInput [(ngModel)]="reserva.hora_entrada" [matDatepicker]="hora_entrada">
       <mat-datepicker-toggle matSuffix [for]="hora_entrada"></mat-datepicker-toggle>
       <mat-datepicker #hora_entrada></mat-datepicker>
    </mat-form-field>
 
-   <mat-form-field [ngClass]="{'invisible': !isreserva}">
+   <mat-form-field [ngClass]="{'invisible': isreserva}">
       <mat-label>Hora de saída</mat-label>
       <input name="hora_saida" matInput [(ngModel)]="reserva.hora_saida" [matDatepicker]="hora_saida">
       <mat-datepicker-toggle matSuffix [for]="hora_saida"></mat-datepicker-toggle>
       <mat-datepicker #hora_saida></mat-datepicker>
    </mat-form-field>
 
-   <div class="mat-form-field container">
+   <div class="mat-form-field">
       <mat-checkbox matInput [(ngModel)]="reserva.is_reserva" name="is_reserva">Reserva?</mat-checkbox>
    </div>
 
@@ -45,10 +45,13 @@
          rows="4"></textarea>
    </mat-form-field>
 
-   <mat-form-field class="invisible">
-      <mat-label> Tipo Temporada </mat-label>
-      <input matInput [(ngModel)]="reserva.tipo_temporada" name="tipo_temporada" required>
-   </mat-form-field>
+   <mat-form-field>
+      <mat-select placeholder="Selecione a temporada" [(ngModel)]="reserva.tipo_temporada" name="reserva">
+          <mat-option *ngFor="let tt of tiposTemporada" [value]="tt._id">
+              {{tt.data_inicio | date:'dd/MM/yyyy'}} - {{tt.data_fim | date:'dd/MM/yyyy'}}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
 
    <mat-toolbar class="form-buttons">
       <mat-toolbar-row>
@@ -66,16 +69,11 @@
 <ng-container *ngIf="reserva._id">
    <hr>
 
-   <app-item-servico-list [reserva]="reserva._id"></app-item-servico-list>
-
-   <hr>
-
    <!-- Listagem de itens da venda, recebendo como parâmetro qual a venda
       cujos itens serão exibidos -->
    <app-hospede-list [reserva]="reserva._id"></app-hospede-list>
 
+   <hr>
 
-
-
-
+   <app-item-servico-list [ngClass]="{'invisible': isreserva}" [reserva]="reserva._id"></app-item-servico-list>
 </ng-container>

@@ -14,7 +14,7 @@ export class QuartoListComponent implements OnInit {
   quartos : any = []
 
   displayedColumns : string[] = [
-    'numero', 'nro_camas', 'cama_casal', 'descricao', 'status', 'preco', 'editar', 'excluir'
+    'numero', 'nro_camas', 'descricao', 'status', 'preco', 'editar', 'excluir'
   ]
   isChecked : boolean
 

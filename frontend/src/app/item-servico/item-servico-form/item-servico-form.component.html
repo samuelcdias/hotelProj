@@ -20,7 +20,7 @@
     <mat-form-field>
         <mat-select placeholder="Selecione o servico" [(ngModel)]="itemServico.servico" name="servico">
             <mat-option *ngFor="let servico of servicos" [value]="servico._id">
-                {{servico.numero}} - {{servico.descricao}} ({{servico.preco_venda}})
+                {{servico.numero}} - {{servico.descricao}} ({{servico.preco_venda | currency:'BRL':'symbol':'1.2-2':'pt-BR'}})
             </mat-option>
         </mat-select>
     </mat-form-field>

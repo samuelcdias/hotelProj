@@ -4,7 +4,7 @@
 
     <mat-form-field>
         <mat-label>Número</mat-label>
-        <input matInput [(ngModel)]="servico.numero" name="numero" readonly>
+        <input matInput [(ngModel)]="servico.numero" name="numero" required>
     </mat-form-field>
 
     <mat-form-field>
@@ -21,12 +21,14 @@
 
     <mat-form-field>
         <mat-label> Preço custo </mat-label>
+        <mat-icon matPrefix>attach_money</mat-icon>
         <input type="number" matInput [(ngModel)]="servico.preco_custo" name="preco_custo" required
             placeholder="Informe o preço de custo do serviço.">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label> Preço venda </mat-label>
+        <mat-icon matPrefix>attach_money</mat-icon>
         <input type="number" matInput [(ngModel)]="servico.preco_venda" name="preco_venda" required
             placeholder="Informe o preço de custo do serviço.">
     </mat-form-field>

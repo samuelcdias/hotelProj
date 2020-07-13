@@ -14,7 +14,7 @@ export class ReservaListComponent implements OnInit {
   reservas : any = []
 
   displayedColumns : string[] = [
-    'dt_entrada_reserva', 'dt_saida_reserva', 'is_reserva', 'obs', 'editar', 'excluir'
+    'codigo', 'dt_entrada_reserva', 'dt_saida_reserva', 'is_reserva', 'obs', 'editar', 'excluir'
   ]
   isChecked : boolean
 

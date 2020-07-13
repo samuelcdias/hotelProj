@@ -16,7 +16,7 @@ export class ItemServicoListComponent implements OnInit {
   itemServicos : any = []
 
   displayedColumns : string[] = [
-     'data_hora', 'servico', 'quantidade', 'editar', 'excluir'
+     'data_hora', 'servico', 'quantidade', 'preco_venda', 'preco_total', 'editar', 'excluir'
   ]
 
   constructor(
